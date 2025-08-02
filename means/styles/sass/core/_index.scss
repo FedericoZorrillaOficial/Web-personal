@@ -1,0 +1,14 @@
+
+//importacion genral
+
+@forward 'variables';
+@forward 'mixins';
+@use '../layout/headerS';
+
+@use '../layout/mainS';
+@use '../layout/mainModules/skills';
+@use '../layout/mainModules/sobreMi';
+@use '../layout/mainModules/contactame';
+@use '../layout/mainModules/testimonios';
+
+@use '../layout/footerS';

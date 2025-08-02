@@ -1,0 +1,26 @@
+
+  .TestimoniosBox{
+    
+    background:red;
+
+    .testimoniosSubBox{
+      
+      display:flex;
+      
+      overflow:scroll;
+      
+      
+      .FmEmergente{
+        display:none;
+        background:blue;
+      }
+      
+    }
+    
+  }
+
+  .FmEmergente{
+
+        display:none;
+        background:blue;
+  }

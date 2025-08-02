@@ -1,0 +1,95 @@
+
+  @use '../core/variables' as vr;
+  @use '../core/mixins' as mx;
+
+
+
+  footer{
+    
+    background: vr.$fondo2;
+    margin-top: 50px;
+    padding:20px;
+    
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+
+    .subB{
+      
+      text-align:left;
+      height:170px;
+      min-width:150px;
+      margin:10px;
+      padding:15px;
+      border:1px solid blue;
+      
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      align-items:center;
+      
+    }
+
+    .subFt1{
+      
+      
+      
+    }
+
+    .subFt2{
+      
+      
+      
+    }
+
+    .subFt3{
+      
+      
+      
+    }
+
+    .subFt4{
+      
+      
+      
+    }
+
+  }
+
+
+
+
+  @media (min-width: 600px) {
+    
+    footer{
+      
+      display:grid;
+      justify-items:center;
+      align-items:center;
+      grid-template-areas:
+        "titulo titulo titulo"
+        "finalS centerS preFS";
+      
+      .subFt1{
+        grid-area:titulo;
+      }
+
+      .subFt2{
+        grid-area:centerS;
+        align-items:center;
+      }
+
+      .subFt3{
+        grid-area:preFS;
+        align-items:right;
+        text-align:right;
+      }
+
+      .subFt4{
+        grid-area:finalS;
+      }
+
+    }
+  }
+

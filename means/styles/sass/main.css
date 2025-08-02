@@ -1,0 +1,485 @@
+/*
+uso:
+
+.caja {
+
+  @include OrdenarBloquesHijos();
+
+}
+
+*/
+
+
+body {
+  background: #222;
+  color: #fff;
+  text-align: center;
+}
+
+img {
+  max-width: 90%;
+}
+
+.fondo {
+  background-image: url("../../../img/fondo.webp");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-radius: 2%;
+}
+
+header {
+  min-height: 80vh;
+  background: #666;
+  background: rgba(30, 30, 30, 0.6);
+  border-radius: 2%;
+}
+
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.menu .BoxInMenu {
+  margin: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+  padding: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 15vw;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 13px;
+}
+.menu .BoxInMenu:hover {
+  background: rgba(50, 50, 50, 0.2);
+  transform: scale(0.9);
+  border: 1px solid;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+.menu .BoxInMenu p {
+  margin: 0;
+  padding: 0;
+}
+.menu .BoxInMenu p span {
+  color: red;
+}
+
+.contenedor {
+  height: 78vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  margin-top: 10%;
+}
+
+.FotoDePerfil {
+  width: 80%;
+  height: auto;
+  z-index: 1;
+  visibility: visible;
+  animation: caida 1s;
+}
+@keyframes caida {
+  0% {
+    width: 100%;
+    visibility: hidden;
+  }
+  80% {
+    width: 100%;
+    visibility: hidden;
+  }
+  90% {
+    width: 100%;
+    visibility: visible;
+  }
+  100% {
+    width: 45%;
+    visibility: visible;
+  }
+}
+.FotoDePerfil img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  animation: onda 1.2s ease-out;
+  animation-delay: 1s;
+}
+@keyframes onda {
+  0% {
+    box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0.6), 0 0 0px 0px rgba(0, 0, 0, 0);
+  }
+  25% {
+    box-shadow: 0 0 30px 40px rgba(255, 255, 255, 0.3), 0 0 15px 20px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 60px 80px rgba(255, 255, 255, 0), 0 0 40px 50px rgba(0, 0, 0, 0.1);
+  }
+  75% {
+    box-shadow: 0 0 80px 100px rgba(255, 255, 255, 0), 0 0 60px 70px rgba(0, 0, 0, 0.05);
+  }
+  100% {
+    box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0), 0 0 0px 0px rgba(0, 0, 0, 0);
+  }
+}
+
+.PerfilBoxTitle {
+  background: rgba(80, 80, 100, 0.2);
+  box-shadow: 0px 1px 3px 1px #555;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 25px;
+  padding-top: 60px;
+  margin: 5px;
+  border: 0.4px solid rgba(169, 206, 233, 0.4);
+  position: relative;
+  top: -70px;
+  z-index: 0;
+  max-width: 70vw;
+  animation: fadeIn 2s ease-in forwards;
+}
+.PerfilBoxTitle h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.6rem, 5vw, 3.5rem);
+  animation: fadeIn 2.3s ease-in forwards;
+}
+.PerfilBoxTitle .PerfilSubtitle {
+  margin-top: 5px;
+  color: #ddd;
+  font-size: clamp(1.6rem - 2.4vw, 2.6vw, 3.5rem - 2.4vw);
+  animation: fadeIn 3s ease-in forwards;
+}
+.PerfilBoxTitle .PerfilSubtitle .PerfilSubtitle2 {
+  font-size: clamp(1.6rem - 4.08vw, 0.92vw, 3.5rem - 4.08vw);
+}
+.PerfilBoxTitle .PerfilSubtitle3 {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: #ddd;
+  font-size: clamp(1.6rem - 4.32vw, 0.68vw, 3.5rem - 4.32vw);
+  animation: fadeIn 4s ease-in forwards;
+}
+.PerfilBoxTitle .BotonesPerfi {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.PerfilBoxTitle .BotonesPerfi input {
+  border-radius: 5px;
+  background: rgba(169, 206, 233, 0.4);
+  border: 1px solid rgba(169, 206, 233, 0.4);
+  color: #fff;
+  padding: 7px;
+  width: 48%;
+  box-shadow: 2px 3px 0px 0px rgba(0, 0, 0, 0.3);
+  animation: apertura 5s;
+}
+.PerfilBoxTitle .BotonesPerfi input:hover {
+  background: rgba(100, 100, 100, 0.2);
+  transform: scale(0.9);
+  border: 1px solid;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+}
+.PerfilBoxTitle .BotonesPerfi .inputGost {
+  background: rgba(150, 150, 150, 0.3);
+  border: 1px solid rgba(250, 250, 250, 0.5);
+}
+.PerfilBoxTitle .BotonesDeRedes {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  overflow: hidden;
+}
+.PerfilBoxTitle .BotonesDeRedes a {
+  animation: deslizar 6s;
+  margin: 2px;
+  background: #000;
+  border-radius: 20px;
+  border: 1px solid rgba(200, 200, 200, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0.9;
+  width: 12%;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 1px 1px 0px 2px rgba(0, 0, 0, 0.3);
+}
+.PerfilBoxTitle .BotonesDeRedes a:hover {
+  transform: scale(1.1);
+  filter: brightness(1.3);
+  box-shadow: 3px 3px 0px 1px rgba(0, 0, 0, 0.2);
+}
+.PerfilBoxTitle .BotonesDeRedes a img {
+  width: 70%;
+  height: auto;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  70% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes apertura {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  70% {
+    opacity: 0;
+    transform: scaleY(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+@keyframes deslizar {
+  0% {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+  70% {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0vw);
+  }
+}
+.CajaServicios {
+  background-color: blue;
+  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Panel {
+  border: 1px solid #fff;
+  max-width: 240px;
+  text-align: center;
+}
+.Panel .PSuperior {
+  background: #0ff;
+}
+.Panel .PMedio {
+  background: #00f;
+}
+.Panel .PMedio img {
+  max-width: 60px;
+}
+.Panel .PInferior {
+  background: #0f0;
+}
+.Panel .PInferior ul {
+  text-align: left;
+  padding: 10px;
+  margin: 10px;
+}
+.Panel .PDesplegable {
+  background: #f0f;
+  display: none;
+}
+.Panel:hover .PDesplegable {
+  display: block;
+  position: absolute;
+}
+
+.PSmall {
+  max-width: 100px;
+}
+
+.PMedium {
+  max-width: 170px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.PMedium .PDesplegable {
+  display: none;
+}
+.PMedium .PSuperior {
+  height: 10%;
+}
+.PMedium .PMedio {
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.PMedium .PInferior {
+  height: 68%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/*
+main{
+
+  background: vr.$fondo2;
+
+}
+
+
+h3 {
+
+  width:80%;
+
+}
+
+
+
+
+
+.CajaServicios{
+
+  @include mx.OrdenarBloquesHijos();
+
+
+  .Panel{
+
+    @include mx.PanelStyle();
+
+  }
+
+}
+
+
+
+
+.CajaProyectos{
+
+  @include mx.OrdenarBloquesHijos();
+
+
+  .Panel{
+
+    @include mx.PanelStyle();
+
+  }
+
+}
+
+
+
+
+.CajaHabilidades{
+
+  @include mx.OrdenarBloquesHijos();
+
+}
+
+
+.Panel{
+
+  @include mx.PanelStyle();
+
+  img {
+
+    width:60px;
+    border:solid;
+
+  }
+
+
+  figure {
+
+    figcaption {
+
+      display:none;
+
+    }
+
+    &:hover figcaption {
+      display: flex;
+      position:absolute;
+
+
+
+    width: 150px;
+    height: 100px;
+    background-color: lightblue;
+    filter: drop-shadow(0px 0px 1px black);
+    border-radius: 10px;
+
+  }
+
+}
+
+
+
+.panel {
+
+  width:130px;
+  max-height:170px;
+  border:1px solid;
+  padding:10px;
+  margin:10px;
+
+}
+
+
+.titlePanel {
+
+  height:30%;
+ // border:1px solid;
+
+}
+
+
+
+.contenPanel {
+
+  text-align:left;
+  height:60%;
+  //border:1px solid;
+
+} 
+
+
+ul {
+
+  padding:0;
+  //border:1px solid;
+
+}
+
+li {
+
+  margin:5px;
+  //border:1px solid;
+
+} 
+
+*/
+footer {
+  background: #666;
+}
+
+/*# sourceMappingURL=main.css.map */

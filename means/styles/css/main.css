@@ -1,0 +1,785 @@
+/*
+uso:
+
+.caja {
+
+  @include OrdenarBloquesHijos();
+
+}
+
+*/
+body {
+  background: #222;
+  color: #fff;
+  text-align: center;
+}
+
+img {
+  max-width: 90%;
+}
+
+.fondo {
+  background-image: url("../../img/fondo.webp");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-radius: 2%;
+}
+
+header {
+  min-height: 80vh;
+  background: #666;
+  background: rgba(30, 30, 30, 0.6);
+  border-radius: 2%;
+}
+
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.menu .BoxInMenu {
+  margin: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+  padding: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 15vw;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 13px;
+}
+.menu .BoxInMenu:hover {
+  background: rgba(50, 50, 50, 0.2);
+  transform: scale(0.9);
+  border: 1px solid;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+.menu .BoxInMenu p {
+  margin: 0;
+  padding: 0;
+}
+.menu .BoxInMenu p span {
+  color: red;
+}
+
+.contenedor {
+  height: 78vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  margin-top: 10%;
+}
+
+.FotoDePerfil {
+  width: 80%;
+  height: auto;
+  z-index: 1;
+  visibility: visible;
+  animation: caida 1s;
+}
+@keyframes caida {
+  0% {
+    width: 100%;
+    visibility: hidden;
+  }
+  80% {
+    width: 100%;
+    visibility: hidden;
+  }
+  90% {
+    width: 100%;
+    visibility: visible;
+  }
+  100% {
+    width: 45%;
+    visibility: visible;
+  }
+}
+.FotoDePerfil img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  animation: onda 1.2s ease-out;
+  animation-delay: 1s;
+}
+@keyframes onda {
+  0% {
+    box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0.6), 0 0 0px 0px rgba(0, 0, 0, 0);
+  }
+  25% {
+    box-shadow: 0 0 30px 40px rgba(255, 255, 255, 0.3), 0 0 15px 20px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 60px 80px rgba(255, 255, 255, 0), 0 0 40px 50px rgba(0, 0, 0, 0.1);
+  }
+  75% {
+    box-shadow: 0 0 80px 100px rgba(255, 255, 255, 0), 0 0 60px 70px rgba(0, 0, 0, 0.05);
+  }
+  100% {
+    box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0), 0 0 0px 0px rgba(0, 0, 0, 0);
+  }
+}
+
+.PerfilBoxTitle {
+  background: rgba(80, 80, 100, 0.2);
+  box-shadow: 0px 1px 3px 1px #555;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 25px;
+  padding-top: 60px;
+  margin: 5px;
+  border: 0.4px solid rgba(169, 206, 233, 0.4);
+  position: relative;
+  top: -70px;
+  z-index: 0;
+  max-width: 70vw;
+  animation: fadeIn 2s ease-in forwards;
+}
+.PerfilBoxTitle h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.6rem, 5vw, 3.5rem);
+  animation: fadeIn 2.3s ease-in forwards;
+}
+.PerfilBoxTitle .PerfilSubtitle {
+  margin-top: 5px;
+  color: #ddd;
+  font-size: clamp(1.6rem - 2.4vw, 2.6vw, 3.5rem - 2.4vw);
+  animation: fadeIn 3s ease-in forwards;
+}
+.PerfilBoxTitle .PerfilSubtitle .PerfilSubtitle2 {
+  font-size: clamp(1.6rem - 4.08vw, 0.92vw, 3.5rem - 4.08vw);
+}
+.PerfilBoxTitle .PerfilSubtitle3 {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: #ddd;
+  font-size: clamp(1.6rem - 4.32vw, 0.68vw, 3.5rem - 4.32vw);
+  animation: fadeIn 4s ease-in forwards;
+}
+.PerfilBoxTitle .BotonesPerfi {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.PerfilBoxTitle .BotonesPerfi input {
+  border-radius: 5px;
+  background: rgba(169, 206, 233, 0.4);
+  border: 1px solid rgba(169, 206, 233, 0.4);
+  color: #fff;
+  padding: 7px;
+  width: 48%;
+  box-shadow: 2px 3px 0px 0px rgba(0, 0, 0, 0.3);
+  animation: apertura 5s;
+}
+.PerfilBoxTitle .BotonesPerfi input:hover {
+  background: rgba(100, 100, 100, 0.2);
+  transform: scale(0.9);
+  border: 1px solid;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+}
+.PerfilBoxTitle .BotonesPerfi .inputGost {
+  background: rgba(150, 150, 150, 0.3);
+  border: 1px solid rgba(250, 250, 250, 0.5);
+}
+.PerfilBoxTitle .BotonesDeRedes {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  overflow: hidden;
+}
+.PerfilBoxTitle .BotonesDeRedes a {
+  animation: deslizar 6s;
+  margin: 2px;
+  background: #000;
+  border-radius: 20px;
+  border: 1px solid rgba(200, 200, 200, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0.9;
+  width: 12%;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 1px 1px 0px 2px rgba(0, 0, 0, 0.3);
+}
+.PerfilBoxTitle .BotonesDeRedes a:hover {
+  transform: scale(1.1);
+  filter: brightness(1.3);
+  box-shadow: 3px 3px 0px 1px rgba(0, 0, 0, 0.2);
+}
+.PerfilBoxTitle .BotonesDeRedes a img {
+  width: 70%;
+  height: auto;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  70% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes apertura {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  70% {
+    opacity: 0;
+    transform: scaleY(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+@keyframes deslizar {
+  0% {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+  70% {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0vw);
+  }
+}
+.CajaServicios {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem;
+}
+
+.PBig {
+  max-width: 200px;
+}
+
+.PSmall {
+  max-width: 100px;
+}
+
+.PMedium:hover {
+  min-width: 235px;
+  min-height: 355px;
+  box-shadow: 10px 10px 5px #191;
+}
+
+.PMedium {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #fff;
+  min-width: 230px;
+  min-height: 350px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  background: #333;
+  box-shadow: 7px 7px 2px #161;
+}
+.PMedium .PDesplegable {
+  display: none;
+}
+.PMedium .PSuperior {
+  box-shadow: inset 0px -10px 10px 0px rgba(70, 70, 70, 0.5);
+  background: rgba(70, 70, 70, 0.1);
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.PMedium .PSuperior img {
+  border-radius: 25%;
+  background: #866;
+  padding: 5px;
+  width: 40px;
+}
+.PMedium .PMedio {
+  width: 100%;
+  border-bottom: 1px solid #444;
+  box-shadow: inset 0px -10px 10px 0px rgba(70, 70, 70, 0.5);
+  background: rgba(70, 70, 70, 0.1);
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.PMedium .PMedio h3 {
+  font-size: 15px;
+}
+.PMedium .PInferior {
+  text-align: left;
+  padding: 10px;
+}
+.PMedium .PInferior ul li {
+  margin-top: 10px;
+  margin-left: -20px;
+}
+
+.CajaProyectos {
+  color: blue;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.SkillsBox {
+  margin-top: 50px;
+  overflow: scroll;
+}
+.SkillsBox .SkillSubBox h3 {
+  margin-top: 50px;
+  text-shadow: 0.4px 0.4px 0px #fff;
+  color: red;
+}
+.SkillsBox .SkillSubBox article {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 20px;
+  margin-top: 30px;
+}
+.SkillsBox .PSmall {
+  color: #cFcDcA;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+  width: 150px;
+  height: 130px;
+  padding: 5px;
+  padding-bottom: 0px;
+  margin-top: 5px;
+  border-radius: 3% 3% 40% 40%;
+  box-shadow: 3px 3px 2px #000;
+}
+.SkillsBox .PSmall:hover {
+  box-shadow: 8px 8px 2px #111;
+}
+.SkillsBox .PSmall .PSuperior {
+  height: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.SkillsBox .PSmall .PSuperior h4 {
+  font-size: 14px;
+}
+.SkillsBox .PSmall .PMedio {
+  border: 0.5px solid #444;
+  border-radius: 3% 3% 40% 40%;
+  box-shadow: 1px 1px 2px #111;
+  background: #333;
+  height: 50%;
+}
+.SkillsBox .PSmall .PMedio img {
+  width: 60px;
+  height: 60px;
+}
+.SkillsBox .PSmall .PInferior {
+  height: 20%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.SkillsBox .PSmall .PDesplegable {
+  display: none;
+}
+.SkillsBox .PSmall:hover .PDesplegable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SkillsBox .PSmall:hover .PDesplegable .TextoDesplegado {
+  padding: 15px;
+  padding-left: 25px;
+  text-align: left;
+  position: absolute;
+  left: 0px;
+  margin: 20px;
+  bottom: 120px;
+  background: rgba(0, 0, 0, 0.8);
+  min-width: 200px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.6);
+  border-radius: 25px;
+  border: 0.2px solid red;
+}
+
+.boxSobreMi {
+  border: 1px solid #000;
+  border-radius: 10px;
+  min-height: 300px;
+  box-shadow: 3px 3px 3px #000;
+  background: #555;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  max-width: 350px;
+  margin: auto;
+  margin-top: 70px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.boxSobreMi img {
+  margin: auto;
+  border-radius: 10px;
+  max-width: 260px;
+}
+.boxSobreMi h3 {
+  text-shadow: 1px 1px 1px #000;
+  color: #fff;
+  font-size: 1.4rem;
+  margin-bottom: 0;
+  margin-top: 50px;
+}
+.boxSobreMi h3 span {
+  color: red;
+  font-size: 1.7rem;
+}
+.boxSobreMi .textoSobreMi {
+  max-width: 300px;
+  margin: auto;
+  margin-top: 0;
+}
+.boxSobreMi .textoSobreMi p {
+  text-align: left;
+  font-size: 0.9rem;
+  padding: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #fff;
+  text-shadow: 1px 0px 0px #000;
+}
+.boxSobreMi .textoSobreMi p span {
+  color: #9cd;
+  font-size: 1.3rem;
+  text-shadow: 0.7px 0.7px 0px #fff;
+}
+.contacto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+.contacto p {
+  max-width: 300px;
+}
+.contacto .linckEnContacto {
+  font-size: 11px;
+}
+.contacto hr {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.boxFormulario {
+  max-width: 400px;
+  border: 1px solid #fff;
+  position: relative;
+  z-index: 0;
+}
+
+.box_decoration {
+  background: linear-gradient(45deg, #f22, #555);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+.box_decoration .chapa1 {
+  background: linear-gradient(90deg, #222, #ccc);
+  position: absolute;
+  z-index: 3;
+  top: -45%;
+  left: -150%;
+  width: 150%;
+  height: 150%;
+  transform: rotate(-45deg);
+  border-radius: 40px;
+}
+.box_decoration .chapa2 {
+  background: linear-gradient(90deg, #a22, #444);
+  position: absolute;
+  z-index: 2;
+  bottom: 15%;
+  right: 70%;
+  width: 50%;
+  height: 120%;
+  transform: rotate(45deg);
+  border-radius: 30px;
+}
+.box_decoration .chapa3 {
+  background: linear-gradient(90deg, #a22, #444);
+  position: absolute;
+  z-index: 2;
+  bottom: 5%;
+  left: 55%;
+  width: 50%;
+  height: 120%;
+  transform: rotate(45deg);
+  border-radius: 30px;
+}
+.box_decoration .chapa4 {
+  background: linear-gradient(90deg, #A9CEE9, #777);
+  position: absolute;
+  z-index: 2;
+  top: 60%;
+  left: 45%;
+  width: 50%;
+  height: 100%;
+  transform: rotate(45deg);
+  border-radius: 30px;
+}
+
+fieldset {
+  text-align: right;
+  position: relative;
+  z-index: 4;
+  margin: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+fieldset .linckBox {
+  width: 100%;
+}
+fieldset .linckBox div {
+  margin-top: 20px;
+}
+fieldset .linckBox div a {
+  font-size: 13px;
+  color: #fff;
+  text-decoration: none;
+  padding: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: rgba(169, 206, 233, 0.6);
+  border-radius: 10px 0 0 10px;
+}
+fieldset a:hover {
+  background-color: rgba(169, 206, 233, 0.7);
+}
+fieldset .mensageBox {
+  display: flex;
+  margin-top: 10px;
+}
+fieldset .mensageBox label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  opacity: 0.6;
+  font-size: 30px;
+}
+fieldset .mensageBox textarea {
+  border: 0.5px solid rgba(209, 209, 212, 0.5);
+  border-bottom: 2px solid #D1D1D4;
+  background: none;
+  padding: 10px;
+  padding-left: 24px;
+  font-weight: 700;
+  color: #fff;
+  width: 75%;
+  transition: 0.2s;
+}
+fieldset .nameBox {
+  display: flex;
+  margin-top: 20px;
+}
+fieldset .nameBox label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  opacity: 0.6;
+  font-size: 30px;
+}
+fieldset .nameBox .InputNombre {
+  border: 0.5px solid rgba(209, 209, 212, 0.5);
+  border-bottom: 2px solid #D1D1D4;
+  background: none;
+  padding: 10px;
+  padding-left: 24px;
+  font-weight: 700;
+  color: #fff;
+  width: 75%;
+  transition: 0.2s;
+}
+fieldset .emailBox {
+  display: flex;
+  margin-top: 20px;
+}
+fieldset .emailBox label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  opacity: 0.6;
+  font-size: 30px;
+}
+fieldset .emailBox .InputEmail {
+  border: 0.5px solid rgba(209, 209, 212, 0.5);
+  border-bottom: 2px solid #D1D1D4;
+  background: none;
+  padding: 10px;
+  padding-left: 24px;
+  font-weight: 700;
+  color: #fff;
+  width: 75%;
+  transition: 0.2s;
+}
+fieldset .generoBox {
+  display: flex;
+  margin-top: 20px;
+}
+fieldset .generoBox label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  opacity: 0.6;
+  font-size: 30px;
+}
+fieldset .generoBox .InputGenero {
+  border: 0.5px solid red;
+  border: 0.5px solid rgba(209, 209, 212, 0.5);
+  border-bottom: 2px solid #D1D1D4;
+  background: none;
+  padding: 10px;
+  padding-left: 24px;
+  font-weight: 700;
+  color: #fff;
+  min-width: 75%;
+}
+fieldset .BtFormulario {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 0px 25px 25px 0px;
+  border: 1px solid #D4D3E8;
+  background: #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  color: #4C489D;
+  box-shadow: 0px 2px 2px #5C5696;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.TestimoniosBox {
+  background: red;
+}
+.TestimoniosBox .testimoniosSubBox {
+  display: flex;
+  overflow: scroll;
+}
+.TestimoniosBox .testimoniosSubBox .FmEmergente {
+  display: none;
+  background: blue;
+}
+
+.FmEmergente {
+  display: none;
+  background: blue;
+}
+
+footer {
+  background: #666;
+  margin-top: 50px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+footer .subB {
+  text-align: left;
+  height: 170px;
+  min-width: 150px;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (min-width: 600px) {
+  footer {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-areas: "titulo titulo titulo" "finalS centerS preFS";
+  }
+  footer .subFt1 {
+    grid-area: titulo;
+  }
+  footer .subFt2 {
+    grid-area: centerS;
+    align-items: center;
+  }
+  footer .subFt3 {
+    grid-area: preFS;
+    align-items: right;
+    text-align: right;
+  }
+  footer .subFt4 {
+    grid-area: finalS;
+  }
+}
+* {
+  font-family: Raleway, sans-serif;
+}
+
+/*# sourceMappingURL=main.css.map */

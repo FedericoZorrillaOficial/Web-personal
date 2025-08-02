@@ -1,0 +1,168 @@
+
+@use '../core/variables' as vr;
+@use '../core/mixins' as mx;
+
+
+
+
+.CajaServicios {
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  gap: 2rem; 
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding: 1rem;
+  
+
+}
+
+
+
+
+
+ //paneles grandes
+.PBig {
+  
+  max-width:200px;
+  
+}
+
+
+
+
+ //paneles pequeños 
+.PSmall {
+  
+  max-width:100px;
+  
+}
+
+
+
+
+
+
+
+ //paneles medianos
+.PMedium:hover{
+  
+  min-width: 235px;
+  min-height:355px;
+  box-shadow:10px 10px 5px #191;
+  
+}
+
+.PMedium {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  border: 1px solid #fff;
+  min-width: 230px;
+  min-height:350px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  background:#333;
+  
+  box-shadow:7px 7px 2px #161;
+  
+  
+  .PDesplegable {
+    display: none;
+  }
+  
+  
+  .PSuperior {
+    
+    box-shadow: inset 0px -10px 10px 0px rgb(70, 70, 70, 0.5);
+    background: rgb(70, 70, 70, 0.1);
+    
+    margin-top: 15px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    img {
+      
+      
+      border-radius:25%;
+      background: #866;
+      padding:5px;
+      width:40px;
+    }
+  }
+  
+  
+  .PMedio {
+    
+    width:100%;
+    
+    border-bottom:1px solid #444;
+    box-shadow: inset 0px -10px 10px 0px rgb(70, 70, 70, 0.5);
+    background: rgb(70, 70, 70, 0.1);
+  
+  
+    margin: 5px;
+      
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    
+      
+    h3{
+      
+      font-size:15px;
+      
+    }
+  }
+  
+  
+  .PInferior {
+    
+    text-align: left;
+    padding:10px;
+    
+    ul{
+      
+      li{
+        
+        margin-top:10px;
+        margin-left:-20px;
+      }
+     
+    }
+    
+  }
+ 
+}
+
+
+
+
+
+
+.CajaProyectos{
+  
+  
+  color:blue;
+  //background:blue;
+  text-align:center;
+  
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  flex-wrap: wrap;
+ 
+}
+
+
+
